@@ -11,11 +11,13 @@ export default class MainPage extends Component{
       currentQ:'',
       corectA:'',
       incorectA:[],
+      answers:[],
       identy:'btn',
       gameover:'',
       playAgainId:'btns',
       countCorrectAnswer: 0,
-      secAmount:''
+      secAmount:'',
+      aId:''
       
     }
   }
@@ -48,7 +50,7 @@ export default class MainPage extends Component{
   gameOver=()=>{
     this.setState({
       currentQ:'',corectA:'',incorectA:'',identy:'btns',
-      gameover:'game over', playAgainId:'',countCorrectAnswer:0
+      gameover:'game over', playAgainId:'',countCorrectAnswer:0,secAmount:''
     })
   }
   setQuestion=()=>{
@@ -58,13 +60,19 @@ export default class MainPage extends Component{
       //console.log(items)
       return i
     })
+    const answerArr=[];
+    answerArr.push(this.state.corectA);
+    answerArr.push(this.state.incorectA);
     this.setState({
       currentQ:items[ran],
       corectA:items[ran].correct_answer,
       incorectA:inQ,
       identy:'btn',
       playAgainId:'btns',
-      gameover:''
+      gameover:'',
+      countCorrectAnswer:0,
+      answers:answerArr,
+      randomIdAnswer:''
       
     })
   }
@@ -90,6 +98,13 @@ export default class MainPage extends Component{
       
     },()=>this.secureAmount()) 
   }
+  se=()=>{
+    var v = Math.floor(Math.random() * Math.floor(3));
+    const ids = ['0','1','2','3'];
+    for(var i=0;)
+    
+    
+  }
     render() {
       return (
         <div>
@@ -107,6 +122,7 @@ export default class MainPage extends Component{
               playAgainId={this.state.playAgainId}
               startAgain={this.startAgain}
               nextQuestion={this.nextQuestion}/>
+        <button type='button' onClick={this.se}>rid</button>
         </div>
       )
     }
