@@ -4,18 +4,23 @@ import Button from './Button';
 export default class Menu extends Component{
    constructor(props){
     super(props);
-    this.state={
-      label:[],
-      color:[]
-    }
   }
+  
+  
   render(){
     return(
       <div>
-      <button type='button' id={this.props.name}>{this.props.value}</button>
-      <button type='button' id={this.props.name}>{this.props.value}</button>
-      <button type='button' id={this.props.name}>{this.props.value}</button>
-      <button type='button' id={this.props.name}>{this.props.value}</button>
+      <div>
+        {this.props.gameover}
+        <button id={this.props.playAgainId} 
+        onClick={this.props.startAgain} type='button'>play again</button>
+      </div>
+      <div id={this.props.identy}>
+      <button type='button'  onClick={this.props.burn}>{this.props.nameA}</button>
+      <button type='button' onClick={this.props.nextQuestion}>{this.props.nameB}</button>
+      <button type='button'  onClick={this.props.burn}>{this.props.nameC}</button>
+      <button type='button'  onClick={this.props.burn}>{this.props.nameD}</button>
+      </div>
       </div>
     )
   }
