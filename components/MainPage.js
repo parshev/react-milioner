@@ -99,9 +99,14 @@ export default class MainPage extends Component{
     },()=>this.secureAmount()) 
   }
   se=()=>{
-    var v = Math.floor(Math.random() * Math.floor(3));
+    
     const ids = ['0','1','2','3'];
-    console.log('**** this connection');
+    const lessIds = [];
+    // while(ids.length>0){
+    //   var v = Math.floor(Math.random() * Math.floor(3));
+    //   ids = ids.filter(id=>id!=v);
+    // }
+    console.log('gfdg')
     
     
   }
