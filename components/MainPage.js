@@ -101,7 +101,7 @@ export default class MainPage extends Component{
   se=()=>{
     var v = Math.floor(Math.random() * Math.floor(3));
     const ids = ['0','1','2','3'];
-    for(var i=0;)
+    console.log('**** this connection');
     
     
   }
