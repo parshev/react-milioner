@@ -30,6 +30,25 @@ export default class MainPage extends Component{
       },()=>this.setQuestion())
     })
   }
+ shuffle=(arr)=> {
+  var currentIndex = this.state.randomIdAnswer.length, temporaryValue, randomIndex;
+  const arrayShiffled = this.state.randomIdAnswer;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return arrayShiffled;
+}
+
   secureAmount=()=>{
     const { countCorrectAnswer } = this.state;
     if(countCorrectAnswer==5){
@@ -63,6 +82,9 @@ export default class MainPage extends Component{
     answerArr.push(items[ran].incorrect_answers[0]);
     answerArr.push(items[ran].incorrect_answers[1]);
     answerArr.push(items[ran].incorrect_answers[2]);
+    const shuffArr = this.shuffle(answerArr);
+    console.log('ffff :'+shuffArr);
+    console.log('hhhhh :'+answerArr)
     this.setState({
       currentQ:items[ran],
       secAmount:'',
@@ -72,7 +94,7 @@ export default class MainPage extends Component{
       gameover:'',
       countCorrectAnswer:0,
       answers:answerArr,
-      randomIdAnswer:answerArr
+      randomIdAnswer:shuffArr
     })
   }
   startAgain=()=>{
