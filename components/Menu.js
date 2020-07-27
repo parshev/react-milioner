@@ -5,7 +5,15 @@ export default class Menu extends Component{
    constructor(props){
     super(props);
   }
-  
+  isCorrectAnswer=(event)=>{
+     if(this.props.corectA===event.target.value){
+       console.log('correct');
+       this.props.nextQuestion();
+     }else{
+       console.log('incorrect');
+       this.props.burn();
+     }
+  }
   
   render(){
     return(
@@ -16,10 +24,10 @@ export default class Menu extends Component{
         onClick={this.props.startAgain} type='button'>play again</button>
       </div>
       <div id={this.props.identy}>
-      <button type='button'  onClick={this.props.burn}>{this.props.nameA}</button>
-      <button type='button' onClick={this.props.nextQuestion}>{this.props.nameB}</button>
-      <button type='button'  onClick={this.props.burn}>{this.props.nameC}</button>
-      <button type='button'  onClick={this.props.burn}>{this.props.nameD}</button>
+      <button type='button' value={this.props.name[0]} onClick={this.isCorrectAnswer}>{this.props.name[0]}</button>
+      <button type='button' value={this.props.name[1]} onClick={this.isCorrectAnswer}>{this.props.name[1]}</button>
+      <button type='button' value={this.props.name[2]}  onClick={this.isCorrectAnswer}>{this.props.name[2]}</button>
+      <button type='button' value={this.props.name[3]}  onClick={this.isCorrectAnswer}>{this.props.name[3]}</button>
       </div>
       </div>
     )

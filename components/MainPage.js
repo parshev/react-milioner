@@ -17,18 +17,17 @@ export default class MainPage extends Component{
       playAgainId:'btns',
       countCorrectAnswer: 0,
       secAmount:'',
-      aId:''
-      
+      aId:'',
+      randomIdAnswer:[]
     }
   }
   componentDidMount(){
     axios.get('https://opentdb.com/api.php?amount=15&type=multiple')
     .then(response=>{
-      //console.log(response)
+      console.log(response)
       this.setState({
         items:response.data.results
       },()=>this.setQuestion())
-           
     })
   }
   secureAmount=()=>{
@@ -44,36 +43,36 @@ export default class MainPage extends Component{
     }else if(countCorrectAnswer==15){
       this.setState({
         secAmount:'Winner. congrats $1500'
-      },()=>console.log(this.state.secAmount))
+      },()=>this.gameOver())
     }
   }
   gameOver=()=>{
     this.setState({
       currentQ:'',corectA:'',incorectA:'',identy:'btns',
-      gameover:'game over', playAgainId:'',countCorrectAnswer:0,secAmount:''
+      gameover:'game over', playAgainId:'',countCorrectAnswer:0,secAmount:'YOU ARE THE WINNER'
     })
   }
   setQuestion=()=>{
     const { items } = this.state;
     var ran = Math.floor(Math.random() * Math.floor(15));
     const inQ = items[ran].incorrect_answers.map((i,index)=>{
-      //console.log(items)
       return i
     })
     const answerArr=[];
-    answerArr.push(this.state.corectA);
-    answerArr.push(this.state.incorectA);
+    answerArr.push(items[ran].correct_answer);
+    answerArr.push(items[ran].incorrect_answers[0]);
+    answerArr.push(items[ran].incorrect_answers[1]);
+    answerArr.push(items[ran].incorrect_answers[2]);
     this.setState({
       currentQ:items[ran],
+      secAmount:'',
       corectA:items[ran].correct_answer,
-      incorectA:inQ,
       identy:'btn',
       playAgainId:'btns',
       gameover:'',
       countCorrectAnswer:0,
       answers:answerArr,
-      randomIdAnswer:''
-      
+      randomIdAnswer:answerArr
     })
   }
   startAgain=()=>{
@@ -83,50 +82,59 @@ export default class MainPage extends Component{
   nextQuestion=()=>{
     const { items } = this.state;
     var ran = Math.floor(Math.random() * Math.floor(15));
+    const answerArr=[];
+    answerArr.push(items[ran].correct_answer);
+    answerArr.push(items[ran].incorrect_answers[0]);
+    answerArr.push(items[ran].incorrect_answers[1]);
+    answerArr.push(items[ran].incorrect_answers[2]);
     const inQ = items[ran].incorrect_answers.map((i,index)=>{
-      //console.log(items)
       return i
     })
     this.setState({
       currentQ:items[ran],
+      secAmount:'',
       corectA:items[ran].correct_answer,
-      incorectA:inQ,
       identy:'btn',
       playAgainId:'btns',
       gameover:'',
+      answers:answerArr,
+      randomIdAnswer:answerArr,
       countCorrectAnswer: this.state.countCorrectAnswer+1
-      
     },()=>this.secureAmount()) 
   }
   se=()=>{
-    
-    const ids = ['0','1','2','3'];
-    const lessIds = [];
-    // while(ids.length>0){
-    //   var v = Math.floor(Math.random() * Math.floor(3));
-    //   ids = ids.filter(id=>id!=v);
-    // }
-    console.log('gfdg')
-    
-    
+    const ids = [];
+    var len = 0;
+    while(len<4){
+      var v = Math.floor(Math.random() * Math.floor(4));
+      if(ids.includes(v)){
+      }else{
+        ids.push(v);
+        len++;
+      }
+    }
+    this.setState({
+      aId:ids
+    })
   }
     render() {
+      const {randomIdAnswer, aId} = this.state;
+      
       return (
         <div>
         <br/>
         <div>{this.state.secAmount}</div><br/>
         <div>{this.state.currentQ.question}</div><br/>
-        <Menu nameA={this.state.incorectA[0]}
-              nameB={this.state.corectA}
-              nameC={this.state.incorectA[1]}
-              nameD={this.state.incorectA[2]}
+        <Menu name={randomIdAnswer}
+             
               burn={this.gameOver}
               levelUp={this.levelUp}
               identy={this.state.identy}
               gameover={this.state.gameover}
               playAgainId={this.state.playAgainId}
               startAgain={this.startAgain}
-              nextQuestion={this.nextQuestion}/>
+              nextQuestion={this.nextQuestion}
+              corectA={this.state.corectA}/>
         <button type='button' onClick={this.se}>rid</button>
         </div>
       )
