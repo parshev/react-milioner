@@ -30,23 +30,20 @@ export default class MainPage extends Component{
       },()=>this.setQuestion())
     })
   }
- shuffle=(arr)=> {
+ shuffle=()=> {
   var currentIndex = this.state.randomIdAnswer.length, temporaryValue, randomIndex;
   const arrayShiffled = this.state.randomIdAnswer;
-
-  // While there remain elements to shuffle...
   while (0 !== currentIndex) {
-
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex -= 1;
-
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-  }
-  return arrayShiffled;
+    temporaryValue = arrayShiffled[currentIndex];
+    arrayShiffled[currentIndex] = arrayShiffled[randomIndex];
+    arrayShiffled[randomIndex] = temporaryValue;
+      }
+  console.log(arrayShiffled);
+  this.setState({
+    randomIdAnswer:arrayShiffled
+  })
 }
 
   secureAmount=()=>{
@@ -82,9 +79,7 @@ export default class MainPage extends Component{
     answerArr.push(items[ran].incorrect_answers[0]);
     answerArr.push(items[ran].incorrect_answers[1]);
     answerArr.push(items[ran].incorrect_answers[2]);
-    const shuffArr = this.shuffle(answerArr);
-    console.log('ffff :'+shuffArr);
-    console.log('hhhhh :'+answerArr)
+    console.log(answerArr);
     this.setState({
       currentQ:items[ran],
       secAmount:'',
@@ -94,8 +89,8 @@ export default class MainPage extends Component{
       gameover:'',
       countCorrectAnswer:0,
       answers:answerArr,
-      randomIdAnswer:shuffArr
-    })
+      randomIdAnswer:answerArr
+    },()=>this.shuffle())
   }
   startAgain=()=>{
     this.setQuestion()
@@ -112,6 +107,7 @@ export default class MainPage extends Component{
     const inQ = items[ran].incorrect_answers.map((i,index)=>{
       return i
     })
+    console.log(answerArr);
     this.setState({
       currentQ:items[ran],
       secAmount:'',
@@ -122,7 +118,8 @@ export default class MainPage extends Component{
       answers:answerArr,
       randomIdAnswer:answerArr,
       countCorrectAnswer: this.state.countCorrectAnswer+1
-    },()=>this.secureAmount()) 
+    },()=>{this.secureAmount();
+    this.shuffle()}) 
   }
   se=()=>{
     const ids = [];
