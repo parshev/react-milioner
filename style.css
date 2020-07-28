@@ -19,3 +19,11 @@ h1, p{
   height: 20px;
   width: 150px;
 }
+#btn1, #btn2, #btn3, #btn4{
+  visibility: visible;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+}
+#btn11, #btn22, #btn33, #btn44{
+  visibility: hidden
+}

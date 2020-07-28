@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Logo from './Logo';
 import Menu from './Menu';
 import axios from 'axios';
+import Joker from './Joker';
 
 export default class MainPage extends Component{
   constructor(props){
@@ -121,24 +122,9 @@ export default class MainPage extends Component{
     },()=>{this.secureAmount();
     this.shuffle()}) 
   }
-  se=()=>{
-    const ids = [];
-    var len = 0;
-    while(len<4){
-      var v = Math.floor(Math.random() * Math.floor(4));
-      if(ids.includes(v)){
-      }else{
-        ids.push(v);
-        len++;
-      }
-    }
-    this.setState({
-      aId:ids
-    })
-  }
+  
     render() {
       const {randomIdAnswer, aId} = this.state;
-      
       return (
         <div>
         <br/>
@@ -154,7 +140,7 @@ export default class MainPage extends Component{
               startAgain={this.startAgain}
               nextQuestion={this.nextQuestion}
               corectA={this.state.corectA}/>
-        <button type='button' onClick={this.se}>rid</button>
+        
         </div>
       )
     }
