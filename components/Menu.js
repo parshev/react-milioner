@@ -75,7 +75,22 @@ export default class Menu extends Component{
   }
   callFriend=()=>{
    const names = this.props.name;
-   const ca = this.props.corectA;
+  var ran = Math.random();
+  if(ran<=0,7){
+    this.setState({
+      audienceResult:this.props.corectA
+    })
+  }else{
+    var i=0;
+    if(name[i]!=this.props.corectA){
+      console.log(name[i])
+      console.log(ran)
+    }else{
+      i++;
+      console.log(name[i])
+      console.log(ran)
+    }
+  }
   }
   //disabled={true} deactivate btn after first click
   render(){
