@@ -27,3 +27,7 @@ h1, p{
 #btn11, #btn22, #btn33, #btn44{
   visibility: hidden
 }
+
+#root{
+  background-color: gray
+}
