@@ -27,7 +27,7 @@ export default class Button extends Component{
   }
   render(){
 return(
-  <div>
+  <div >
     <button id={this.state.allColor} onClick={this.isAnySelected}>{this.props.name}</button>
   
     </div>

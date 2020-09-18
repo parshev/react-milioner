@@ -17,14 +17,14 @@ export default class Joker extends Component{
   }
   render(){
     return(
-      <div id='joker-div-conteiner'>
-        <button type='button'
+      <div className='joker-div-conteiner'>
+        <button className='joker-div' type='button'
                 onClick={this.fiftyFifty}
                 >50/50</button>
-        <button type='button'
+        <button className='joker-div' type='button'
                 onClick={this.help}
                 >audience</button>
-        <button type='button'
+        <button className='joker-div' type='button'
                 onClick={this.friend}
                 >call a friend</button>
       </div>

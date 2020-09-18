@@ -20,7 +20,7 @@ export default class MainPage extends Component {
       secAmount: "",
       aId: "",
       randomIdAnswer: [],
-      column:''
+      column: ""
     };
   }
   componentDidMount() {
@@ -52,7 +52,7 @@ export default class MainPage extends Component {
     this.setState({
       randomIdAnswer: arrayShiffled
     });
-  }
+  };
   secureAmount = () => {
     const { countCorrectAnswer } = this.state;
     if (countCorrectAnswer == 5) {
@@ -84,15 +84,37 @@ export default class MainPage extends Component {
       secAmount: "YOU ARE THE WINNER"
     });
   };
-  setColum=()=>{
-    const as =['100','200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500'];
-    const jsxAs = as.map((a,index)=>{
-      return (<div><button key={index}>{as[index]}</button></div>)
-    })
+  setColum = () => {
+    const as = [
+      "100",
+      "200",
+      "300",
+      "400",
+      "500",
+      "600",
+      "700",
+      "800",
+      "900",
+      "1000",
+      "1100",
+      "1200",
+      "1300",
+      "1400",
+      "1500"
+    ];
+    const jsxAs = as.map((a, index) => {
+      return (
+        <div className='column' >
+          <button className='column-button' key={index}>
+            {as[index]}
+          </button>
+        </div>
+      );
+    });
     this.setState({
-      column:jsxAs
-    })
-  }
+      column: jsxAs
+    });
+  };
   setQuestion = () => {
     const { items } = this.state;
     var ran = Math.floor(Math.random() * Math.floor(15));
@@ -157,29 +179,32 @@ export default class MainPage extends Component {
 
   render() {
     const { randomIdAnswer, aId } = this.state;
-    return (
-      <div id='main-div'>
-        <br />
-        <div id='secureAmount-div'>{this.state.secAmount}</div>
-        <br />
-        <div id='question-div'>{this.state.currentQ.question}</div>
-        <br />
-        <div id='menu-div'>
+    return (<div className='row-main-div'>
+      <div className='container-main'>
+        <div className='secure-amount'>
+          <br />
+          <div >{this.state.secAmount}</div>
+          <br />
+          <div className='question-field'><em>{this.state.currentQ.question}</em></div>
+          <br />
+        </div >
+        <div >
           <Menu
-            name={randomIdAnswer}
-            burn={this.gameOver}
-            levelUp={this.levelUp}
-            identy={this.state.identy}
-            gameover={this.state.gameover}
-            playAgainId={this.state.playAgainId}
-            startAgain={this.startAgain}
-            nextQuestion={this.nextQuestion}
-            corectA={this.state.corectA}
+              name={randomIdAnswer}
+              burn={this.gameOver}
+              levelUp={this.levelUp}
+              identy={this.state.identy}
+              gameover={this.state.gameover}
+              playAgainId={this.state.playAgainId}
+              startAgain={this.startAgain}
+              nextQuestion={this.nextQuestion}
+              corectA={this.state.corectA}
           />
         </div>
-        <div>
-          {this.state.column}
-        </div>
+          
+        
+      </div>
+      <div className='column'>{this.state.column}</div>
       </div>
     );
   }
