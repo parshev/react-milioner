@@ -133,7 +133,7 @@ export default class Menu extends Component {
   //disabled={true} deactivate btn after first click
   render() {
     return (
-      <div className='container-menu'>
+      <div className='con-menu'>
         <div>
           {this.props.gameover}
           <button
