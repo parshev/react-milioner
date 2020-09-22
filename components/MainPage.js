@@ -20,7 +20,11 @@ export default class MainPage extends Component {
       secAmount: "",
       aId: "",
       randomIdAnswer: [],
-      column: ""
+      column: "",
+      as : [
+      "100","200","300","400","500","600","700","800","900","1000",
+      "1100","1200","1300","1400","1500"
+    ]
     };
   }
   componentDidMount() {
@@ -51,7 +55,7 @@ export default class MainPage extends Component {
     console.log(arrayShiffled);
     this.setState({
       randomIdAnswer: arrayShiffled
-    });
+    },()=>{this.setColum()});
   };
   secureAmount = () => {
     const { countCorrectAnswer } = this.state;
@@ -85,32 +89,25 @@ export default class MainPage extends Component {
     });
   };
   setColum = () => {
-    const as = [
-      "100",
-      "200",
-      "300",
-      "400",
-      "500",
-      "600",
-      "700",
-      "800",
-      "900",
-      "1000",
-      "1100",
-      "1200",
-      "1300",
-      "1400",
-      "1500"
-    ];
+    const{ countCorrectAnswer, as } = this.state;
     const jsxAs = as.map((a, index) => {
+      if(countCorrectAnswer==index){
       return (
-        <div className='column' >
-          <button className='column-button' key={index}>
+        <div className="column">
+          <button className="light-class" key={index}>
+            {as[index]}
+          </button>
+        </div>
+      )
+      }else{
+       return (
+        <div className="column">
+          <button className="column-button" key={index}>
             {as[index]}
           </button>
         </div>
       );
-    });
+    }})
     this.setState({
       column: jsxAs
     });
@@ -179,17 +176,20 @@ export default class MainPage extends Component {
 
   render() {
     const { randomIdAnswer, aId } = this.state;
-    return (<div className='row-main-div'>
-      <div className='container-main'>
-        <div className='secure-amount'>
-          <br />
-          <div >{this.state.secAmount}</div>
-          <br />
-          <div className='question-field'><em>{this.state.currentQ.question}</em></div>
-          <br />
-        </div >
-        <div >
-          <Menu
+    return (
+      <div className="row-main-div">
+        <div className="container-main">
+          <div className="secure-amount">
+            <br />
+            <div>{this.state.secAmount}</div>
+            <br />
+            <div className="question-field">
+              <em>{this.state.currentQ.question}</em>
+            </div>
+            <br />
+          </div>
+          <div>
+            <Menu
               name={randomIdAnswer}
               burn={this.gameOver}
               levelUp={this.levelUp}
@@ -199,12 +199,10 @@ export default class MainPage extends Component {
               startAgain={this.startAgain}
               nextQuestion={this.nextQuestion}
               corectA={this.state.corectA}
-          />
+            />
+          </div>
         </div>
-          
-        
-      </div>
-      <div className='column'>{this.state.column}</div>
+        <div className="column">{this.state.column}</div>
       </div>
     );
   }
