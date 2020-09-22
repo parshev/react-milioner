@@ -45,7 +45,7 @@ h1, p{
   display:flex;
   text-align: center;
   color: whitesmoke;
-  text-shadow: 2px 2px black;
+  text-shadow: 3px 3px black;
 }
 .joker-div{
   background-color: lightblue;
