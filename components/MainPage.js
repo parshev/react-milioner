@@ -109,7 +109,7 @@ export default class MainPage extends Component {
       );
     }})
     this.setState({
-      column: jsxAs
+      column: jsxAs.reverse()
     });
   };
   setQuestion = () => {
@@ -124,7 +124,7 @@ export default class MainPage extends Component {
     answerArr.push(items[ran].incorrect_answers[1]);
     answerArr.push(items[ran].incorrect_answers[2]);
     console.log(answerArr);
-    const questionProgres = this.setColum();
+    //const questionProgres = this.setColum();
     this.setState(
       {
         currentQ: items[ran],
