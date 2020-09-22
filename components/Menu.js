@@ -133,7 +133,7 @@ export default class Menu extends Component {
   //disabled={true} deactivate btn after first click
   render() {
     return (
-      <div className='con-menu'>
+      <div className="con-menu">
         <div>
           {this.props.gameover}
           <button
@@ -144,51 +144,51 @@ export default class Menu extends Component {
             play again
           </button>
         </div>
-        <div id={this.props.identy}>
-          <button
-            type="button"
-            id={this.state.btn1}
-            value={this.props.name[0]}
-            onClick={this.isCorrectAnswer}
-          >
-            {this.props.name[0]}
-          </button>
-          <button
-            type="button"
-            id={this.state.btn2}
-            value={this.props.name[1]}
-            onClick={this.isCorrectAnswer}
-          >
-            {this.props.name[1]}
-          </button>
-          <button
-            type="button"
-            id={this.state.btn3}
-            value={this.props.name[2]}
-            onClick={this.isCorrectAnswer}
-          >
-            {this.props.name[2]}
-          </button>
-          <button
-            type="button"
-            id={this.state.btn4}
-            value={this.props.name[3]}
-            onClick={this.isCorrectAnswer}
-          >
-            {this.props.name[3]}
-          </button>
+          <div id={this.props.identy}>
+            <button
+              type="button"
+              id={this.state.btn1}
+              value={this.props.name[0]}
+              onClick={this.isCorrectAnswer}
+            >
+              {this.props.name[0]}
+            </button>
+            <button
+              type="button"
+              id={this.state.btn2}
+              value={this.props.name[1]}
+              onClick={this.isCorrectAnswer}
+            >
+              {this.props.name[1]}
+            </button>
+            <button
+              type="button"
+              id={this.state.btn3}
+              value={this.props.name[2]}
+              onClick={this.isCorrectAnswer}
+            >
+              {this.props.name[2]}
+            </button>
+            <button
+              type="button"
+              id={this.state.btn4}
+              value={this.props.name[3]}
+              onClick={this.isCorrectAnswer}
+            >
+              {this.props.name[3]}
+            </button>
+          </div>
+          <br />
+          <br />
+          <p id="joker-label">jokers</p>
+          <Joker
+            fiftyJoker={this.joker50Function}
+            audienceHelp={this.audienceHelp}
+            callFriend={this.callFriend}
+          />
+          <br />
+          <div>{this.state.audienceResult}</div>
         </div>
-        <br />
-        <br />
-        <p id='joker-label'>jokers</p>
-        <Joker
-          fiftyJoker={this.joker50Function}
-          audienceHelp={this.audienceHelp}
-          callFriend={this.callFriend}
-        />
-        <br />
-        <div>{this.state.audienceResult}</div>
-      </div>
     );
   }
 }
