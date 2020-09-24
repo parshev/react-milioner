@@ -10,7 +10,10 @@ export default class Menu extends Component {
       btn2: "btn2",
       btn3: "btn3",
       btn4: "btn4",
-      audienceResult: ""
+      audienceResult: "",
+      isUsed50: false,
+      isUsedPublic: false,
+      isUsedFriend: false
     };
   }
   isCorrectAnswer = event => {
@@ -36,9 +39,19 @@ export default class Menu extends Component {
           btn4: "btn4",
           audienceResult: ""
         },
-        () => this.props.burn()
+        () => {
+          this.props.burn();
+          this.resetJoker();
+        }
       );
     }
+  };
+  resetJoker = () => {
+    this.setState({
+      isUsed50: false,
+      isUsedFriend: false,
+      isUsedPublic: false
+    });
   };
   joker50Function = () => {
     const names = this.props.name;
@@ -58,6 +71,9 @@ export default class Menu extends Component {
         this.setState({ btn1: "btn11", btn2: "btn22" });
         break;
     }
+    this.setState({
+      isUsed50: true
+    });
   };
   audienceHelp = () => {
     var count0 = 0;
@@ -81,6 +97,9 @@ export default class Menu extends Component {
           count3++;
           break;
       }
+      this.setState({
+        isUsedPublic: true
+      });
     }
     console.log(
       "A:" +
@@ -129,8 +148,10 @@ export default class Menu extends Component {
         console.log(ran);
       }
     }
+    this.setState({
+      isUsedFriend: true
+    });
   };
-  //disabled={true} deactivate btn after first click
   render() {
     return (
       <div className="con-menu">
@@ -144,9 +165,11 @@ export default class Menu extends Component {
             play again
           </button>
         </div>
+        <div className="first-group-answers">
           <div id={this.props.identy}>
             <button
               type="button"
+              className="disabled"
               id={this.state.btn1}
               value={this.props.name[0]}
               onClick={this.isCorrectAnswer}
@@ -161,6 +184,8 @@ export default class Menu extends Component {
             >
               {this.props.name[1]}
             </button>
+          </div>
+          <div className="second-group-answers">
             <button
               type="button"
               id={this.state.btn3}
@@ -178,17 +203,21 @@ export default class Menu extends Component {
               {this.props.name[3]}
             </button>
           </div>
-          <br />
-          <br />
-          <p id="joker-label">jokers</p>
-          <Joker
-            fiftyJoker={this.joker50Function}
-            audienceHelp={this.audienceHelp}
-            callFriend={this.callFriend}
-          />
-          <br />
-          <div>{this.state.audienceResult}</div>
         </div>
+        <br />
+        <br />
+        <p id="joker-label">jokers</p>
+        <Joker
+          isUsed50={this.state.isUsed50}
+          isUsedPublic={this.state.isUsedPublic}
+          isUsedFriend={this.state.isUsedFriend}
+          fiftyJoker={this.joker50Function}
+          audienceHelp={this.audienceHelp}
+          callFriend={this.callFriend}
+        />
+        <br />
+        <div>{this.state.audienceResult}</div>
+      </div>
     );
   }
 }

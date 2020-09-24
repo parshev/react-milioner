@@ -1,6 +1,9 @@
 h1, p{
   font-family: Lato;
 }
+.all-menu-container{
+  margin-left: 50px;
+}
  #btns{
   display: none
 
@@ -10,7 +13,7 @@ h1, p{
   justify-content: space-around;
   background-image: url('https://image.slidesharecdn.com/game1-120704020728-phpapp02/95/who-wants-to-be-a-millionaire-1-728.jpg?cb=1341368416');
   width:100%;
-  height:800px;
+  height:700px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -18,7 +21,7 @@ h1, p{
 .container-main{
   display:flex;
   flex-direction: column;
-  margin: 200px;
+  justify-content: flex-end;
 }
 .joker-div-conteiner{
   display:flex;
@@ -28,7 +31,7 @@ h1, p{
   align-items: center;
   justify-content: space-around;
   display: flex;
-  margin-top: 100px;
+  margin-top: 120px;
 }
 .column{
   display:flex;
@@ -36,8 +39,12 @@ h1, p{
   text-align: center;
 }
 .column-button{
-  background-color: lightblue;
+  border-top:solid 1px gold;
   border-radius: 5px;
+  background-color: transparent;
+  border-left: solid transparent;
+  border-right: solid transparent;
+  color: white;
 }
 .question-field{
   font-size: 2em;
@@ -52,14 +59,18 @@ h1, p{
 }
 #btn1, #btn2, #btn3, #btn4{
   visibility: visible;
-  padding: 10px 10px 10px 10px;
+  margin-right: 15px;
+  margin-top:15px;
   text-align: center;
   border: solid 1px gold;
-  background-color:transparent;
+  background-color: rgba(29, 29, 146, 0.486) ;
   border-left: solid transparent;
   border-right: solid transparent;
   color: white;
   font-size:1em;
+  width:300px;
+  height:50px
+
 }
 #btn11, #btn22, #btn33, #btn44{
   visibility: hidden
@@ -69,4 +80,9 @@ h1, p{
 }
 .light-class{
   background-color:goldenrod;
+}
+button[disabled]
+{
+  pointer-events: none;
+  opacity: 0.7;
 }

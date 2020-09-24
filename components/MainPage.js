@@ -93,19 +93,16 @@ export default class MainPage extends Component {
     const jsxAs = as.map((a, index) => {
       if(countCorrectAnswer==index){
       return (
-        <div className="column">
           <button className="light-class" key={index}>
             {as[index]}
           </button>
-        </div>
       )
       }else{
        return (
-        <div className="column">
           <button className="column-button" key={index}>
             {as[index]}
           </button>
-        </div>
+        
       );
     }})
     this.setState({
@@ -188,7 +185,7 @@ export default class MainPage extends Component {
             </div>
             <br />
           </div>
-          <div>
+          <div className='all-menu-container'>
             <Menu
               name={randomIdAnswer}
               burn={this.gameOver}
